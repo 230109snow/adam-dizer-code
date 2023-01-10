@@ -98,14 +98,3 @@ let object =
     a: {b: 'valueof a/b'}
 }
 
-function fizzbuzz()
-{
-    let a = document.querySelector('#fizzbuzz-input').value;
-    console.log(a);
-    // you'll want to look up jacascript loops, conditions,  modulo
-}
-
-function calculator(value)
-{
-    //switch
-}
