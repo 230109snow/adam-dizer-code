@@ -76,4 +76,36 @@ function conditionalOperators()
     if ('a' == 'a' && 'b' == 'c'){} // false because b != c
     if ('a' == 'b' || 'a' === 'a'){} // true because any statement is true
 
+
+    if (true==false){} // false
+    if (true&&false){} // false
+    if (false||true){} // true
+    if (!false){} // true
+    if (true===true){} // true strict type comparison
+    if ("" || False || Undefined || Null || 0 || NaN || EmptyString){} // falsey
+
+
+}
+
+// javascrip object is a collection of key valie pair
+// keys have to be unique
+// the values 
+let object = 
+{
+    key: 'value',
+    key2 : 2,
+    key3: [1,2,3,4,5],
+    a: {b: 'valueof a/b'}
+}
+
+function fizzbuzz()
+{
+    let a = document.querySelector('#fizzbuzz-input').value;
+    console.log(a);
+    // you'll want to look up jacascript loops, conditions,  modulo
+}
+
+function calculator(value)
+{
+    //switch
 }
