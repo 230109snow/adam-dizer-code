@@ -9,7 +9,7 @@ let operatorVal = null;
 let currentVal = null;
 let equationVal = null;
 
-function onNumberClick(value)
+function onClick(value)
 {
 
 
@@ -56,5 +56,6 @@ function onNumberClick(value)
     console.log(previousVal, operatorVal, currentVal, equationVal);
     
 
-    document.getElementById('expression').innerText = equationVal;
+    document.getElementById('expression').innerText = value;
+    //document.getElementById('expression').innerText = equationVal;
 }

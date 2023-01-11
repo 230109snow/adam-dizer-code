@@ -19,59 +19,108 @@ If number is not divisible by 3, 5, or 15, then print the number itself
 
 */
 
+function returnDivisibleFizzBuzzNum(num)
+{
+    let returnStr = "";
+
+    if (num % 15 === 0) // we have a fizzbuzz!
+        returnStr += "FizzBuzz\n"
+    else if (num % 5  === 0) // just a fizz
+        returnStr += "Buzz\n"
+    else if (num % 3  === 0) // just a buzz
+        returnStr += "Fizz\n"
+    else // regular number here
+        returnStr += num + "\n"
+
+    return returnStr;
+}
+
 function fizzbuzz()
 {
     // decalre the variables
 
     let inputVal = document.querySelector('#fizzbuzz-input').value; // value given
     let inputNum = Number(inputVal); // convert to num
-    let outputNums = []; // values to ouput
-    let outputString = "please enter a number";
+    let outputNumArray = []; // values to ouput
+    let outputString = "please enter a positive number";
+    let outputStringFromArray = "please enter a positive number";
+
+    const outputTable = document.querySelector('#fizzbuzz-output');
+    
+
 
     console.log(inputNum);
     console.log(typeof inputNum);
 
     // lets check if we've been given trash
-    if (inputNum > 0)
+    if (outputTable && inputNum > 0)
     {
         outputString = "";
 
-        // cycle through all the 
+        console.log("Cycling through number");
         for (let i = 1; i < inputNum + 1; i++)
         {
+            
+            outputString += returnDivisibleFizzBuzzNum(i);
+            outputNumArray.push(returnDivisibleFizzBuzzNum(i));
 
-            if (i % 15 == 0) // we have a fizzbuzz!
-            {
-                outputNums.push("FizzBuzz");
-                outputString += "FizzBuzz" + "\n"
-            }
-            else if (i % 5  == 0) // just a fizz
-            {
-                outputNums.push("Buzz");
-                outputString += "Buzz" + "\n"
-            }
-            else if (i % 3  == 0) // just a buzz
-            {
-                outputNums.push("Fizz");
-                outputString += "Fizz" + "\n"
-            }
-            else // regular number here
-            {
-                outputNums.push(i);
-                outputString += i + "\n"
-            }
-
+           
+            const newRow = outputTable.insertRow();  // creates a new <tr> element
+            const newCell1 = newRow.insertCell(); //creats a new <td> element inside the <tr>
+            const newCell2 = newRow.insertCell(); //creats a new <td> element inside the <tr>
+            newCell1.innerText = i;
+            newCell2.innerText = returnDivisibleFizzBuzzNum(i);
+            
         }
+
+        console.log("Cycling through array");
+        for (let o in outputNumArray)
+        {
+            console.log(o, outputNumArray[o]);
+            outputStringFromArray +=  outputNumArray[o] + "\n";
+        }
+
+
+        // String concat Method
+
+        // for (let i = 1; i < inputNum + 1; i++)
+        // {
+
+        //     if (i % 15 == 0) // we have a fizzbuzz!
+        //         outputString += "FizzBuzz" + "\n"
+        //     else if (i % 5  == 0) // just a fizz
+        //         outputString += "Buzz" + "\n"
+        //     else if (i % 3  == 0) // just a buzz
+        //         outputString += "Fizz" + "\n"
+        //     else // regular number here
+        //         outputString += i + "\n"
+        // }
+    
+
+
+        // outputNum Array Method
+
+        // for (let i = 1; i < inputNum + 1; i++)
+        // {
+        //     if (i % 15 == 0) // we have a fizzbuzz!
+        //         outputNums.push("FizzBuzz");
+        //     else if (i % 5  == 0) // just a fizz
+        //         outputNums.push("Buzz");
+        //     else if (i % 3  == 0) // just a buzz
+        //         outputNums.push("Fizz");
+        //     else // regular number here
+        //         outputNums.push(i);
+        // }
+
+        // console.log(outputNums);
+        // for (let o in outputNums)
+        // {
+        //     console.log(o, outputNums[o]);
+        //     outputString +=  outputNums[o] + "\n";
+        // }
+
+
     }
 
-    /*
-    console.log(outputNums);
-    for (let o in outputNums)
-    {
-        console.log(o, outputNums[o]);
-        outputString +=  outputNums[o] + "\n";
-    }
-    */
-
-    document.getElementById('fizzbuzz-output').innerText = outputString;
+    //document.getElementById('fizzbuzz-output').innerText = outputString;
 }
