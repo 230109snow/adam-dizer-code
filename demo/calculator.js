@@ -17,6 +17,8 @@ function onClick(value)
     switch(value)
     {
         case '9':
+            if (previousVal == null)
+                previousVal = value;
             break;
         case '8':
             break;

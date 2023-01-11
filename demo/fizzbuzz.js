@@ -19,24 +19,34 @@ If number is not divisible by 3, 5, or 15, then print the number itself
 
 */
 
-function returnDivisibleFizzBuzzNum(num)
-{
-    let returnStr = "";
 
-    if (num % 15 === 0) // we have a fizzbuzz!
-        returnStr += "FizzBuzz\n"
-    else if (num % 5  === 0) // just a fizz
-        returnStr += "Buzz\n"
-    else if (num % 3  === 0) // just a buzz
-        returnStr += "Fizz\n"
-    else // regular number here
-        returnStr += num + "\n"
-
-    return returnStr;
-}
 
 function fizzbuzz()
 {
+
+    //
+    // closure - private scope enclosing a funciton within another function
+    //          - equivalent to setting a helper method private in OOP
+    //
+    function returnDivisibleFizzBuzzNum(num)
+    {
+        let returnStr = "";
+    
+        if (num % 15 === 0) // we have a fizzbuzz!
+            returnStr += "FizzBuzz\n"
+        else if (num % 5  === 0) // just a fizz
+            returnStr += "Buzz\n"
+        else if (num % 3  === 0) // just a buzz
+            returnStr += "Fizz\n"
+        else // regular number here
+            returnStr += num + "\n"
+    
+        return returnStr;
+    }
+    //
+    //
+
+
     // decalre the variables
 
     let inputVal = document.querySelector('#fizzbuzz-input').value; // value given
@@ -53,7 +63,7 @@ function fizzbuzz()
     console.log(typeof inputNum);
 
     // lets check if we've been given trash
-    if (outputTable && inputNum > 0)
+    if (outputTable && inputNum > 0 && inputNum)
     {
         outputString = "";
 
