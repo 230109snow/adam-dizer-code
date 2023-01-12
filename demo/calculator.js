@@ -95,20 +95,46 @@ function onClick(value)
         // MULTI-DIGIT NUMBERS 
         // ***********************************
 
-        // shift the value over
-        if ((isNaN(previousVal) && !isNaN(currentVal)) ||
-                (!isNaN(previousVal) && !isNaN(currentVal)))
-                    previousVal = currentVal; 
+        // do we need to add a operand?
+        // are we working with the last value?
+        // or are we working with the first value
 
-        // set the new value
-        currentVal = value; 
+        
+        // set the new value if we have an operand then we...
+        if (operatorVal != null)
+        {
+            // ...are working with the second value
+
+            // check to make sure that we have something in the first value but nothing in the second yet
+            // then we need to make a shift
+            if ((isNaN(previousVal) && !isNaN(currentVal)))
+            {
+                previousVal = currentVal; 
+                currentVal = NaN;
+            }
+    
+        }
+
+        //check to see if we are in a cleared state
+        if (isNaN(currentVal)) 
+            currentVal = value; 
+        else
+            currentVal = Number(String(currentVal) + String(value));
     }
 
+    // we need to calculate here
     if (equationVal === true)
-        displayString = calculate(previousVal, operatorVal, currentVal);
-    else
+    {
+        let calVal = calculate(previousVal, operatorVal, currentVal);
+        displayString = calVal;
+        clearMemory();
+        currentVal = calVal;
+    }
+    else // just update the display
         displayString = updateDisplayValues(previousVal, operatorVal, currentVal);
 
+    
+    console.log(value,"|", previousVal, operatorVal, currentVal, equationVal);
     displayTag.innerText = displayString; 
 
 }
