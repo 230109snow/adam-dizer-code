@@ -89,16 +89,6 @@ function onClick(value)
         operatorVal = String(value); // assign the arithmatic operation to be performed
     else
     {
-        // ***********************************
-        // THIS IS SIMPLE SINGLE DIGIT LOGIC 
-        // THIS NEEDS TO BE REWORKED FOR 
-        // MULTI-DIGIT NUMBERS 
-        // ***********************************
-
-        // do we need to add a operand?
-        // are we working with the last value?
-        // or are we working with the first value
-
         
         // set the new value if we have an operand then we...
         if (operatorVal != null)
