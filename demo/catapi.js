@@ -65,12 +65,11 @@ function getCats()
         const numCats = document.getElementById('img-num');
         const breed = document.getElementById('breed');
         const form = document.getElementById('cat-api-form');
-        const breedTest = document.getElementsByName(document.getElementById('breed').value).id
-
-
-        console.log(numCats)
-        console.log(breed.childNodes)
-        console.log(breedTest)
+    
+        console.log(numCats);
+        console.log(numCats.childNodes);
+        console.log(breed);
+        console.log(breed.childNodes);
 
         const url = breed ? `https://api.thecatapi.com/v1/images/search?limit=${numCats}&breed_ids=${breed}` : 
                             `https://api.thecatapi.com/v1/images/search?limit=${numCats}`;
