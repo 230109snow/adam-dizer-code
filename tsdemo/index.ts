@@ -101,5 +101,5 @@ let w: any = 'string';
 let t : string = w;
 let i : number = w;
 
-fn1();
-fn2();
+//fn1();
+//fn2();

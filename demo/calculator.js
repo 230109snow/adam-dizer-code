@@ -83,9 +83,9 @@ function onClick(value)
     else if (value === '=')
         equationVal = true; // flag to be calculated
     else if (value === '+' ||
-            value === '-' ||
-            value === '/' ||
-            value === 'x')
+             value === '-' ||
+             value === '/' ||
+             value === 'x')
         operatorVal = String(value); // assign the arithmatic operation to be performed
     else
     {
@@ -109,7 +109,17 @@ function onClick(value)
         if (isNaN(currentVal)) 
             currentVal = value; 
         else
+        {
+            console.log(String(currentVal))
+            console.log(String(value))
+            if (value === '.')
+            {
+                // console.log(value,"|", previousVal, operatorVal, currentVal, equationVal);
+                // currentVal = String(currentVal) + String(value) + String('0');
+            }
+            
             currentVal = Number(String(currentVal) + String(value));
+        }
     }
 
     // we need to calculate here
