@@ -23,7 +23,7 @@ function loadForm()
 function setCounter()
 {
 
-    let numMax = 30;
+    let numMax = 10;
     const breed = document.getElementById('breed').value;
     const numCats = document.getElementById('img-num');
     

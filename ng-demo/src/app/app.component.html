@@ -1,0 +1,13 @@
+<h1>My App</h1>
+
+<div *ngIf="show">
+  <div *ngFor="let i of data">
+    <!-- string interpolation, treat everything inside {{}} as variable/expression -->
+    {{i}}
+  </div>
+</div>
+
+<button (click)="toggleClick()">Toggle Show</button>
+
+<!-- <app-test></app-test> -->
+

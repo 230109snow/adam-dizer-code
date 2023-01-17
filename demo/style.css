@@ -7,3 +7,27 @@ h2{color: green;}
 #p-tag-example{color: aquamarine;}
 
 .container {margin: 200pt;}
+
+.myButton {
+    color: rgb(255, 255, 255); 
+    font-size: 23px; 
+    line-height: 23px; 
+    padding: 12px; 
+    border-radius: 10px; 
+    font-family: Impact, Charcoal, sans-serif; 
+    font-weight: 400; 
+    text-decoration: none; 
+    font-style: normal; 
+    font-variant: normal; 
+    text-transform: none; 
+    background-image: linear-gradient(rgb(6, 93, 162) 0%, rgb(9, 157, 203) 34%, rgb(0, 31, 105) 100%); 
+    box-shadow: rgba(0, 0, 0, 0.71) 1px 1px 10px 0px; 
+    border: 2px solid rgb(28, 110, 164); 
+    display: inline-block;}
+    
+.myButton:hover {   
+    background: #065DA2; }
+
+.myButton:active {
+    background: #001F69; }
+    
