@@ -1,1 +1,11 @@
 <p>test works!</p>
+
+<!-- Structural Directive -->
+<div *ngIf="show">
+    <div *ngFor="let i of data">
+      <!-- string interpolation, treat everything inside {{}} as variable/expression -->
+      {{i}}
+    </div>
+  </div>
+  
+  <button (click)="toggleClick()">Toggle Show</button>

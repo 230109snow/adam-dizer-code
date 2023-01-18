@@ -4,29 +4,30 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
+import { CatsComponent } from './cats/cats.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    CatsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-    //TwoModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  // exports: [
-  //   FooComponent
-  // ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule 
 { 
-  data : number[] = [1,2,3,4,5];
+ 
   
 }
 
-
-// create module
-// ng g c

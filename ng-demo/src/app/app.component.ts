@@ -8,11 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ng-demo';
 
-  data: number[] = [1,2,3,4]
-  show : boolean = true;
 
-  toggleClick() : void
-  {
-    this.show = !this.show;
-  }
 }

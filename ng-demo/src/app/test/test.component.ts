@@ -8,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class TestComponent {
 
+  data: number[] = [1,2,3,4]
+  show : boolean = true;
+
+  toggleClick() : void
+  {
+    this.show = !this.show;
+  }
+
 }
