@@ -1,19 +1,57 @@
 <h4>The Cat API</h4>
 
-<!-- two way binding using "banana box" -->
-<input type="number" [(ngModel)]="numCats">
-<button (click)="incrementCats()">+</button>
-<button (click)="decrementCats()">-</button>
-<button (click)="reset()">reset</button>
+<form #catform="ngForm" (submit)="getCats(catform)">
+    
+    <div>
+        <label for="numCats">How many cats do you want (1-25)?</label>
+        <div>
+            <!-- <button (click)="decrementCats()">-</button> -->
+            <input type="number" 
+                    name="numCats" 
+                    id="numCats" 
+                    [(ngModel)]="numCats" 
+                    #numcat="ngModel" 
+                    [required]="validation.required" 
+                    [min]="validation.min" 
+                    [max]="validation.max">
+            <!-- <button (click)="incrementCats()">+</button> -->
+            <!-- <button (click)="reset()">Reset</button> -->
+        </div>  
+        <div *ngIf="numcat.invalid && (numcat.dirty && numcat.touched)" class="alert">
+            <div *ngIf="numcat.errors?.['min']">
+                the min value is 1.
+            </div>
+            <div *ngIf="numcat.errors?.['max']">
+                the max value is 25.
+            </div>
+        </div>
+    </div>
 
-<div></div>
-<label for="breed">What Kind of cat do you want?</label>
-<select name="breed" [id]="breed"></select>
+    <div>
+        <label for="breed">What type of cat do you want?</label>
+        <div>
+            <select name="breed">
+                <option id="">--any--</option>
+                <option *ngFor="let b of catBreeds" 
+                    [innerText]="b.name"
+                    [value]="b.id"></option>
+            </select>
+        </div>
+        <!-- <div>{{catBreeds | json}}</div> -->
+    </div>
+    
+    <div></div>
+    <input type="submit" value="Get Cats">
+</form>
 
-<div></div>
-<button (click)="getCats()">Get Cats</button>
 
-<div *ngFor="let pic of catpics">
-    <img [src]="pic.url" width="50%"/> <!-- [src] is an example of property binding // pic is pic in catpics / url is the url in component -->
+<div>
+    <div *ngFor="let pic of catPics">
+        <img [src]="pic.url" width="50%"/> <!-- [src] is an example of property binding // pic is pic in catpics / url is the url in component -->
+        <div></div>
+        <button (click)="vote({id: pic.id, amount: 1})">+</button>
+        <button (click)="vote({id: pic.id, amount: -1})">-</button>
+    </div>
+    <div>{{catPics | json}}</div>
 </div>
-<!-- {{catpics | json}} -->
+
