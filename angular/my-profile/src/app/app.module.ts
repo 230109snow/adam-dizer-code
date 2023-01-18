@@ -10,6 +10,10 @@ import { AboutComponent } from './about/about.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { CatsComponent } from './projects/cats/cats.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FetchComponent } from './projects/fetch/fetch.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,17 @@ import { HomeComponent } from './home/home.component';
     ProjectsComponent,
     AboutComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    CatsComponent,
+    FetchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
