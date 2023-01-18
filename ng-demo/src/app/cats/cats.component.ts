@@ -30,7 +30,11 @@ export class CatsComponent implements OnInit, OnDestroy {
 
   incrementCats() :void{this.numCats++;}
   decrementCats() :void{this.numCats--;}
-  reset() : void {this.numCats=0;}
+  reset() : void 
+  {
+    this.numCats=0;
+    this.catpics.length = 0;
+  }
 
   getCats() : void
   {
