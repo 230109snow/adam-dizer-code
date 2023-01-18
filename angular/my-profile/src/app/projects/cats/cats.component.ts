@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class CatsComponent implements OnInit, OnDestroy {
 
   numCats : number = 0;
+  strBreeds : string = "";
   catpics : any[] = [];
   now : number | Date = Date.now();
 
@@ -22,32 +23,76 @@ export class CatsComponent implements OnInit, OnDestroy {
 
   // when this component mounts/renders for the first time, run wahtever code in here
   ngOnInit(): void
-  {console.log(apikey)};
+  {
+    //console.log(apikey)
+    // this.getBreeds();
+    // this.setCounter();
+  };
 
   // great place to do any cleanups
   ngOnDestroy(): void
   {}
 
-  incrementCats() :void{this.numCats++;}
-  decrementCats() :void{this.numCats--;}
-  reset() : void 
-  {
-    this.numCats=0;
-    this.catpics.length = 0;
-  }
+  incrementCats() : void{this.numCats++;}
+  decrementCats() : void{this.numCats--;}
+  reset() : void {this.numCats=0; this.catpics.length = 0;}
+
+  // setCounter() : void
+  // {
+
+  //     let numMax = 10;
+  //     const breed = document.getElementById('breed').value;
+  //     const numCats = document.getElementById('img-num');
+      
+      
+  //     for (i=1; i<=numMax; i++)
+  //     {
+  //         const numOption = document.createElement('option');
+  //         numOption.value = i;
+  //         numOption.innerText = i;
+  //         numCats.appendChild(numOption);
+  //     }
+
+  // }
+
+
+  // getBreeds() : void
+  // {
+  //     const catArray = fetch('https://api.thecatapi.com/v1/breeds').then((res) => res.json()).then((data) => {
+          
+  //     const catBreed = document.getElementById('breed');
+
+  //     // Add random option
+  //     const catOption = document.createElement('option');
+  //     catOption.innerText = "--any--";
+  //     catOption.value = "any";
+  //     catBreed.appendChild(catOption);
+
+  //     for (let i=0; i<data.length; i++)
+  //     {
+  //         const catOption = document.createElement('option');
+  //         catOption.innerText = data[i].name;
+  //         catOption.value = data[i].id;
+  //         catBreed.appendChild(catOption);
+  //     }
+      
+  //     })
+
+      
+  // }
 
   getCats() : void
   {
     console.log(`get ${this.numCats} gatos`);
-
     const url = `https://api.thecatapi.com/v1/images/search?limit=${this.numCats}`;
+
     this.http.get(url, 
       {headers: 
         { 'x-api-key' : apikey }
       }).subscribe(((data : any) => 
         {     
           for (let index in data)
-          {this.catpics.push(data[index])}
+            {this.catpics.push(data[index])}
           console.log(this.catpics);
         }
         ));

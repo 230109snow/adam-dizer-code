@@ -1,16 +1,42 @@
 <p>cats works!</p>
 
 <!-- two way binding using "banana box" -->
-<input type="number" [(ngModel)]="numCats">
-<button (click)="incrementCats()">+</button>
-<button (click)="decrementCats()">-</button>
-<button (click)="reset()">reset</button>
-<button (click)="getCats()">Get Cats</button>
+
+<form #catform="ngForm" (submit)="getCats(catform)">
+    <input type="number" 
+            name="numCats" 
+            id="numCats" 
+            [(ngModel)]="numCats" 
+            #numcat="ngModel" 
+            [required]="validation.required" 
+            [min]="validation.min" 
+            [max]="validation.max">
+    <!-- Do not display error messages, unless the user have interacted with the input field -->
+    <div *ngIf="numcat.invalid && (numcat.dirty && numcat.touched)" class="alert">
+        <div *ngIf="numcat.errors?.['min']">
+            the min value is 1.
+        </div>
+        <div *ngIf="numcat.errors?.['max']">
+            the max value is 25.
+        </div>
+    </div>
+    <input type="submit" value="get cats">
+
+    <!-- <button (click)="incrementCats()">+</button>
+    <button (click)="decrementCats()">-</button> -->
+    <button (click)="reset()">reset</button>
+    
+</form>
+
+
 
 
 <div *ngFor="let pic of catpics">
     <!-- [src] is an example of property binding -->
     <!-- pic is pic in catpics / url is the url in component -->
     <img [src]="pic.url" width="50%"/>
+    <button (click)="vote({id: pic.id, amount: 1})">+</button>
+    <button (click)="vote({id: pic.id, amount: -1})">-</button>
 </div>
-{{catpics | json}}
+
+<!-- {{catpics | json}} -->

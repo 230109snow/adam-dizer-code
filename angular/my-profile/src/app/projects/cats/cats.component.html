@@ -1,17 +1,19 @@
-<p>cats works!</p>
+<h4>The Cat API</h4>
 
 <!-- two way binding using "banana box" -->
 <input type="number" [(ngModel)]="numCats">
 <button (click)="incrementCats()">+</button>
 <button (click)="decrementCats()">-</button>
 <button (click)="reset()">reset</button>
+
+<div></div>
+<label for="breed">What Kind of cat do you want?</label>
+<select name="breed" [id]="breed"></select>
+
 <div></div>
 <button (click)="getCats()">Get Cats</button>
 
-
 <div *ngFor="let pic of catpics">
-    <!-- [src] is an example of property binding -->
-    <!-- pic is pic in catpics / url is the url in component -->
-    <img [src]="pic.url" width="50%"/>
+    <img [src]="pic.url" width="50%"/> <!-- [src] is an example of property binding // pic is pic in catpics / url is the url in component -->
 </div>
 <!-- {{catpics | json}} -->
