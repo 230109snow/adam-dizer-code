@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuoteApiService } from 'src/app/services/quote-api.service';
 
 @Component({
@@ -11,13 +11,16 @@ export class QuoteComponent {
   quoteStr : string = "";
 
   constructor(private quoteapi : QuoteApiService) {}
+  ngOnInit() :void{}
 
   getQuote() : void
   {
+
+    console.log('here1.0')
     this.quoteapi.getQuote().subscribe((data: any) => 
     {
-      console.log(data)
-      this.quoteStr = data;
+      console.log('here1.1')
+      //this.quoteStr = data;
     })
   }
 
