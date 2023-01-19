@@ -31,7 +31,7 @@
         <label for="breed">What type of cat do you want?</label>
         <div>
             <select name="breed">
-                <option id="">--any--</option>
+                <option value="">--any--</option>
                 <option *ngFor="let b of catBreeds" 
                     [innerText]="b.name"
                     [value]="b.id"></option>

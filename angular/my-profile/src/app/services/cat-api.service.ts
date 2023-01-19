@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catVoteDTO } from 'src/app/models/catVoteDTO';
 import { Observable } from 'rxjs';
-import { apikey, apiroot } from 'src/cat-api-const';
+import { catapikey, catapiroot } from 'src/cat-api-const';
 
 
 interface CatObj {
@@ -25,30 +25,39 @@ export class CatApiService {
     const payload = {"image_id": id, "value": amount}
 
     return this.http.post(
-      `${apiroot}votes`, 
+      `${catapiroot}votes`, 
       payload, 
       {
           headers: {
-              'x-api-key': apikey
+              'x-api-key': catapikey
           }
         }) as Observable<CatObj>;
   }
 
-  getCats(numCats : number) : Observable<any> {
-    const url = `${apiroot}images/search?limit=${numCats}`
+  getCats(numCats : number, breed : string) : Observable<any> {
+
+    
+    console.log(numCats, breed);
+
+    let url : string = `${catapiroot}images/search?limit=${numCats}`;
+    if (breed != '')
+    { url += `&breed_ids=${breed}`; }
+
+    console.log(url);
+
     return this.http.get(url, {
       headers: {
-        'x-api-key' : apikey
+        'x-api-key' : catapikey
       }
     });
   }
 
   getBreeds() : Observable<any>
   {
-    const url = `${apiroot}breeds`;
+    const url = `${catapiroot}breeds`;
     return this.http.get(url, {
       headers: {
-        'x-api-key' : apikey
+        'x-api-key' : catapikey
       }
     });
   }

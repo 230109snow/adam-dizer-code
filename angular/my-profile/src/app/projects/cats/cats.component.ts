@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CatApiService } from 'src/app/services/cat-api.service';
 import { catVoteDTO } from 'src/app/models/catVoteDTO';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-cats',
@@ -44,7 +45,7 @@ export class CatsComponent implements OnInit, OnDestroy {
       this.catBreeds = data;
     })
 
-    }
+  }
 
   vote(args : catVoteDTO) : void {
     this.catapi.vote(args).subscribe({
@@ -61,8 +62,9 @@ export class CatsComponent implements OnInit, OnDestroy {
 
   getCats(form : any) : void {
     if(form.valid) {
+      console.log(form)
       // assembling and sending the get request
-      this.catapi.getCats(this.numCats).subscribe((data: any) => 
+      this.catapi.getCats(this.numCats, this.strSelectedBreed).subscribe((data: any) => 
       {
         // httpClient returns an observable to handle asynchronous request
         this.catPics = data;

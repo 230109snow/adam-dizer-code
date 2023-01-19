@@ -14,6 +14,7 @@ import { CatsComponent } from './projects/cats/cats.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FetchComponent } from './projects/fetch/fetch.component';
+import { QuoteComponent } from './projects/quote/quote.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FetchComponent } from './projects/fetch/fetch.component';
     FooterComponent,
     HomeComponent,
     CatsComponent,
-    FetchComponent
+    FetchComponent,
+    QuoteComponent
   ],
   imports: [
     BrowserModule,
