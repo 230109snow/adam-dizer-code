@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CatApiService } from 'src/app/services/cat-api.service';
 import { catVoteDTO } from 'src/app/models/catVoteDTO';
-import { Form } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cats',
@@ -26,7 +26,6 @@ export class CatsComponent implements OnInit, OnDestroy {
   // when this component mounts/renders for the first time, run wahtever code in here
   ngOnInit(): void
   {
-    //console.log(apikey)
     this.getBreeds();
   };
 
@@ -41,9 +40,7 @@ export class CatsComponent implements OnInit, OnDestroy {
   getBreeds() : void
   {
     this.catapi.getBreeds().subscribe((data: any) => 
-    {
-      this.catBreeds = data;
-    })
+    {this.catBreeds = data;})
 
   }
 
@@ -71,6 +68,14 @@ export class CatsComponent implements OnInit, OnDestroy {
       })
     }
   }
+
+
+  cardForm : FormGroup = new FormGroup({
+    question: new FormControl('', [Validators.required]),
+    answer: new FormControl('', [Validators.required])
+  });
+
+  submitForm() {}
       
 }
 

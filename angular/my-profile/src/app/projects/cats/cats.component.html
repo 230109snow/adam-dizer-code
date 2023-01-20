@@ -1,11 +1,11 @@
 <h4>The Cat API</h4>
 
-<form #catform="ngForm" (submit)="getCats(catform)">
+
+<!-- <form #catform="ngForm" (submit)="getCats(catform)">
     
     <div>
         <label for="numCats">How many cats do you want (1-25)?</label>
         <div>
-            <!-- <button (click)="decrementCats()">-</button> -->
             <input type="number" 
                     name="numCats" 
                     id="numCats" 
@@ -14,8 +14,6 @@
                     [required]="validation.required" 
                     [min]="validation.min" 
                     [max]="validation.max">
-            <!-- <button (click)="incrementCats()">+</button> -->
-            <!-- <button (click)="reset()">Reset</button> -->
         </div>  
         <div *ngIf="numcat.invalid && (numcat.dirty && numcat.touched)" class="alert">
             <div *ngIf="numcat.errors?.['min']">
@@ -37,20 +35,29 @@
                     [value]="b.id"></option>
             </select>
         </div>
-        <!-- <div>{{catBreeds | json}}</div> -->
     </div>
     
     <div></div>
     <input type="submit" value="Get Cats">
-</form>
+</form> -->
+
+<div>
+    <form [formGroup]="cardForm">
+        <div class="form-group">
+
+
+        </div>
+    </form>
+</div>
 
 
 <div>
     <div *ngFor="let pic of catPics">
         <img [src]="pic.url" width="50%"/> <!-- [src] is an example of property binding // pic is pic in catpics / url is the url in component -->
-        <div></div>
-        <button (click)="vote({id: pic.id, amount: 1})">+</button>
-        <button (click)="vote({id: pic.id, amount: -1})">-</button>
+        <div>
+            <button (click)="vote({id: pic.id, amount: 1})">+</button>
+            <button (click)="vote({id: pic.id, amount: -1})">-</button>
+        </div>
     </div>
     <div>{{catPics | json}}</div>
 </div>
