@@ -1,8 +1,8 @@
 module.exports = {
-    // mode: 'development',
-    // devServer: {
-    //   proxy: {
-    //     '/projects': 'http://localhost:3000',
-    //   },
-    // },
+    mode: 'development',
+    devServer: {
+      proxy: {
+        '/projects': 'http://localhost:3000',
+      },
+    },
   };

@@ -16,15 +16,12 @@ interface QuoteObj {
 })
 export class QuoteApiService {
 
-  quoteList : QuoteObj[];
-  hasLoadedQuotes: boolean;
+  quoteList : QuoteObj[] = [];
+  hasLoadedQuotes: boolean = false;
 
 
-  constructor(private http: HttpClient) {
-    this.quoteList = [];
-    this.hasLoadedQuotes = false;
-    this.ngOnInit();
-  }
+  constructor(private http: HttpClient) 
+  {this.ngOnInit();}
 
   ngOnInit() : void
   {this.initalizeQuotes();}
@@ -79,7 +76,23 @@ export class QuoteApiService {
     return this.quoteList.slice(randomNumber, randomNumber+1)[0].q;
   }
 
-  async getDummyQuote() 
+  async getDummyQuotes(num : any)
+  {
+    console.log("quote.quoteservice.getDummyQuotes()")
+    let qArr : any[] = [];
+
+    for (let i=0; i < num.length; i++)
+    {
+      this.getDummyQuote().then(data =>
+        {
+          console.log("returning from quote.quoteservice.getDummyQuote()",data)
+          qArr+=data;
+        });
+    }
+
+    return qArr;
+  }
+  async getDummyQuote()
   {
     if (!this.hasLoadedQuotes)
     {this.initalizeQuotes();}

@@ -1,1 +1,14 @@
-<p>meme works!</p>
+<div class="meme-button-container">
+    <button class="meme-button-create"(click)="createMeme(1)">Create Meme!</button>
+    <button class="meme-button-save"(click)="saveMeme()">Save</button>
+</div>
+<div class="meme-page">
+    <div class="meme-container">
+        <div class="meme-image-container" *ngFor="let pic of catPics">
+            <img class="meme-image" [src]="pic.url" />
+        </div>
+        <div class="meme-quote-container">
+            <p class="meme-quote">{{quoteStr}}</p>
+        </div>
+    </div>
+</div>
