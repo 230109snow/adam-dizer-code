@@ -15,7 +15,6 @@ export class QuoteComponent {
 
   getQuote() : void
   {
-
     console.log('here1.0')
     this.quoteapi.getQuote().subscribe((data: any) => 
     {
@@ -31,6 +30,14 @@ export class QuoteComponent {
     }).catch(error => {
       console.error(error);
     });
+  }
+
+  getQuoteDummy()
+  {
+    this.quoteapi.getDummyQuote().then((data: any) => 
+    {
+      this.quoteStr = data;
+    })
   }
   
 }

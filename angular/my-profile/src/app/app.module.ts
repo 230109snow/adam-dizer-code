@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FetchComponent } from './projects/fetch/fetch.component';
 import { QuoteComponent } from './projects/quote/quote.component';
+import { MemeComponent } from './projects/meme/meme.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { QuoteComponent } from './projects/quote/quote.component';
     HomeComponent,
     CatsComponent,
     FetchComponent,
-    QuoteComponent
+    QuoteComponent,
+    MemeComponent
   ],
   imports: [
     BrowserModule,

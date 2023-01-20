@@ -1,14 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { quoteurl, quoteurl2 } from 'src/quote-api-const';
+import quotes from 'src/app/services/dummyQuotes.json';
+
+interface QuoteObj {
+  q:String; 
+  a:String; 
+  c:String; 
+  h:String;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuoteApiService {
 
-  constructor(private http: HttpClient) { }
+  quoteList : QuoteObj[];
+  hasLoadedQuotes: boolean;
+
+
+  constructor(private http: HttpClient) {
+    this.quoteList = [];
+    this.hasLoadedQuotes = false;
+    this.ngOnInit();
+  }
+
+  ngOnInit() : void
+  {this.initalizeQuotes();}
 
   getQuote() : Observable<any>
   {
@@ -26,6 +45,7 @@ export class QuoteApiService {
         'Access-Control-Allow-Credentials': 'true'
       }
     });
+
    }
 
    async getApiTest() : Promise<any> {
@@ -39,4 +59,31 @@ export class QuoteApiService {
     }
   }
 
+
+  initalizeQuotes() : void
+  {
+    this.quoteList = quotes;
+    this.hasLoadedQuotes = true;
+  }
+
+  getNewQuote() : any
+  {
+    console.log("getNewQuote");
+    let min : number = 0;
+    let max : number = this.quoteList.length;
+    let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
+    console.log(min,max,randomNumber);
+    console.log(this.quoteList.slice(randomNumber, randomNumber+1));
+    console.log(this.quoteList.slice(randomNumber, randomNumber+1)[0]);
+    console.log(this.quoteList.slice(randomNumber, randomNumber+1)[0].q);
+    return this.quoteList.slice(randomNumber, randomNumber+1)[0].q;
+  }
+
+  async getDummyQuote() 
+  {
+    if (!this.hasLoadedQuotes)
+    {this.initalizeQuotes();}
+
+    return this.getNewQuote();
+  }  
 }

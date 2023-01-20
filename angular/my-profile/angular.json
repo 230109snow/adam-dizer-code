@@ -9,6 +9,7 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -58,6 +59,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          
           "configurations": {
             "production": {
               "browserTarget": "my-profile:build:production"
@@ -98,4 +100,5 @@
   "cli": {
     "analytics": "438c61a0-af2d-40d0-973e-2f7f92a80d2b"
   }
+  
 }
