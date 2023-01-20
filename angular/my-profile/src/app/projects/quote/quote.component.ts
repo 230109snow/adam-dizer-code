@@ -20,8 +20,19 @@ export class QuoteComponent {
     this.quoteapi.getQuote().subscribe((data: any) => 
     {
       console.log('here1.1')
-      //this.quoteStr = data;
+      this.quoteStr = data;
     })
   }
 
+
+  getQuoteTest() { 
+    this.quoteapi.getApiTest().then((data: any) => {
+      this.quoteStr = data;
+    }).catch(error => {
+      console.error(error);
+    });
+  }
+  
 }
+
+

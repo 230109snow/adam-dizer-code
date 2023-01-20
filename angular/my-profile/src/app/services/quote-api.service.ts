@@ -20,12 +20,23 @@ export class QuoteApiService {
     return this.http.get(quoteurl, {
       headers: {
         'content-type' : 'application/json; charset=utf-8',
-        'Access-Control-Allow-Credentials' : 'true',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Expose-Headers': 'pm-e, pm-h0, pm-h1, pm-h2, pm-h3, pm-o0, pm-o1, pm-o2, pm-o3',
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With',
+        'Access-Control-Allow-Credentials': 'true'
       }
     });
+   }
+
+   async getApiTest() : Promise<any> {
+    try {
+      const response = await fetch(quoteurl, {mode: 'cors'});
+      var data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }
