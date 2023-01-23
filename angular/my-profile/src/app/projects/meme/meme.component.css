@@ -23,6 +23,7 @@
 .meme-image {
     border-radius: 5px;
     max-height: fit-container;
+    width: 100%;
 }
 
 .meme-quote-container {

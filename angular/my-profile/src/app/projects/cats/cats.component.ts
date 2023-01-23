@@ -26,7 +26,7 @@ export class CatsComponent implements OnInit, OnDestroy {
   // when this component mounts/renders for the first time, run wahtever code in here
   ngOnInit(): void
   {
-    this.catapi.ngOnInit();
+    this.catBreeds = [];
     this.getBreeds();
   };
 
@@ -40,8 +40,12 @@ export class CatsComponent implements OnInit, OnDestroy {
 
   getBreeds() : void
   {
+    console.log(this.catBreeds);
     this.catapi.getBreeds().subscribe((data: any) => 
-    {this.catBreeds = data;})
+    {
+      
+      this.catBreeds = data;
+    })
 
   }
 

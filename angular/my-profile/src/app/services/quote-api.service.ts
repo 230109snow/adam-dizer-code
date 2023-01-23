@@ -69,7 +69,7 @@ export class QuoteApiService {
     let min : number = 0;
     let max : number = this.quoteList.length;
     let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
-    console.log(min,max,randomNumber);
+    console.log("rand", randomNumber, "min", min,"max", max);
     console.log(this.quoteList.slice(randomNumber, randomNumber+1));
     console.log(this.quoteList.slice(randomNumber, randomNumber+1)[0]);
     console.log(this.quoteList.slice(randomNumber, randomNumber+1)[0].q);
