@@ -28,7 +28,7 @@
     <div>
         <label for="breed">What type of cat do you want?</label>
         <div>
-            <select name="breed">
+            <select name="breed" id="breedId" (change)="updateSelectedBreed($event)">
                 <option value="">--any--</option>
                 <option *ngFor="let b of catBreeds" 
                     [innerText]="b.name"
@@ -45,7 +45,18 @@
     <form [formGroup]="cardForm">
         <div class="form-group">
 
-
+            
+            <div>
+                <label for="breed">What type of cat do you want?</label>
+                <div>
+                    <select name="breed" id="breedId" (change)="updateSelectedBreed($event)">
+                        <option value="">--any--</option>
+                        <option *ngFor="let b of catBreeds" 
+                            [innerText]="b.name"
+                            [value]="b.id"></option>
+                    </select>
+                </div>
+            </div>
         </div>
     </form>
 </div> -->

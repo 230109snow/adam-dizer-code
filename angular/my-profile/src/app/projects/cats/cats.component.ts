@@ -26,7 +26,6 @@ export class CatsComponent implements OnInit, OnDestroy {
   // when this component mounts/renders for the first time, run wahtever code in here
   ngOnInit(): void
   {
-    this.catBreeds = [];
     this.getBreeds();
   };
 
@@ -81,7 +80,15 @@ export class CatsComponent implements OnInit, OnDestroy {
   });
 
   submitForm() {}
+
+  updateSelectedBreed(e : any)
+  {
+    let tVal = e.target.value;
+    this.strSelectedBreed = tVal;
+    console.log(this.strSelectedBreed)
+  }
       
+
 }
 
 
