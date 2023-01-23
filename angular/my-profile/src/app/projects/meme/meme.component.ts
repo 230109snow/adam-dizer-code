@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { QuoteApiService } from 'src/app/services/quote-api.service';
 import { CatApiService } from 'src/app/services/cat-api.service';
-//import { html2canvas } from 'html2canvas';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-meme',
@@ -18,16 +18,34 @@ export class MemeComponent {
 
   saveMeme()
   {
-    // console.log("saveMeme")
-    // var element = document.getElementById('meme-container');
-    // html2canvas(element, {
-    //   onrendered: function(canvas:any) {
-    //     var link = document.createElement('a');
-    //     link.download = 'divId.jpg';
-    //     link.href = canvas.toDataURL('image/jpeg');
-    //     link.click();
-    //   }
-    // });
+    console.log("saveMeme")
+
+    let divElement : HTMLElement | any = document.getElementById('meme-container');
+    let imageElement :HTMLElement[] | any[] = divElement.children[0];
+    let textElement :HTMLElement[] | any[] = divElement.children[1];
+    // let imageElement :HTMLElement | any = document.getElementById('meme-image-container');
+    // let textElement :HTMLElement | any = document.getElementById('meme-quote-container');
+
+    console.log(divElement);
+    console.log(divElement.offsetWidth);
+    console.log(divElement.offsetHeight);
+    console.log(imageElement);
+    console.log(textElement);
+
+    let canvas = document.createElement('canvas');
+    canvas.width = divElement.offsetWidth;
+    canvas.height = divElement.offsetHeight;
+
+    let ctx : CanvasRenderingContext2D | any = canvas.getContext('2d');
+    let img :  HTMLImageElement | any[] = imageElement;
+    
+    ctx.drawImage(img, 0, 0);
+
+    let dataURL = canvas.toDataURL('image/png');
+    let link = document.createElement('a');
+    link.download = 'your-random-cat-meme.png';
+    link.href = dataURL;
+    link.click();
   }
 
   createMeme(num:number)

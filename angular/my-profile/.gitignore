@@ -1,6 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 **/api-key.ts
+**/cat-api-const.ts
+**/quote-api-const.ts
 
 # Compiled output
 /dist

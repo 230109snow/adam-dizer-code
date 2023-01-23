@@ -1,3 +1,4 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catVoteDTO } from 'src/app/models/catVoteDTO';
@@ -18,6 +19,11 @@ export class CatApiService {
 
   constructor(private http: HttpClient) { }
 
+  ngOnInit() : void
+  {
+    console.log(catapikey);
+    console.log(catapiroot);
+  }
 
   vote(args : catVoteDTO) : Observable<CatObj> 
   {
@@ -54,7 +60,7 @@ export class CatApiService {
 
   getBreeds() : Observable<any>
   {
-    const url = `${catapiroot}breeds`;
+    const url : string = `${catapiroot}breeds`;
     return this.http.get(url, {
       headers: {
         'x-api-key' : catapikey

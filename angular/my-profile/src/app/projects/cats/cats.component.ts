@@ -26,6 +26,7 @@ export class CatsComponent implements OnInit, OnDestroy {
   // when this component mounts/renders for the first time, run wahtever code in here
   ngOnInit(): void
   {
+    this.catapi.ngOnInit();
     this.getBreeds();
   };
 
