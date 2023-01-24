@@ -14,10 +14,20 @@ export class MemeComponent {
   catPics : any[] = [];
   quoteArr : any[] = [];
   quoteStr : string = "";
-
   imgID : any;
+  imgTransformer : HTMLImageElement = new Image();
+  urlWorkaround : string = "https://cors-anywhere.herokuapp.com/";
+  boolCanBeSaved : boolean = false;
 
   constructor(private quoteapi : QuoteApiService, private catapi : CatApiService){}
+
+
+  toggleSave()
+  {
+    console.log(this.boolCanBeSaved);
+    this.boolCanBeSaved = this.boolCanBeSaved ? false : true;;
+    console.log(this.boolCanBeSaved);
+  }
 
   saveMeme()
   {
@@ -36,13 +46,18 @@ export class MemeComponent {
     canvas.width = divElement.offsetWidth;
     canvas.height = divElement.offsetHeight;
 
-    // set the image // lets bypass the CORS error while drawing from the image source
-    let img : HTMLImageElement = new Image()
-    img.src = `https://cors-anywhere.herokuapp.com/${imageElement.src}`;
-    img.crossOrigin = "anonymous";
-    img.onload = (e) => {
-      ctx.drawImage(img, 50, 50);
-    }
+    // draw the image // which we already got from the fetch src requests and pases it through hoops
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(this.imgTransformer,
+                  0, //source x
+                  0, // source y
+                  this.imgTransformer.width, //original width
+                  this.imgTransformer.height, // original height
+                  this.imgTransformer.width*.05, // canvas location x
+                  this.imgTransformer.height*.05, // canvas location y
+                  canvas.width-(canvas.width*.1), // width to draw
+                  canvas.height-(canvas.height*.3)); // height to draw
 
     // set the text
     const fontSize : string = "25pt";
@@ -85,7 +100,7 @@ export class MemeComponent {
           ctx.fillText(wordSpaceMargin,x,y)
 
         //Check if word will fit on canvas
-        if (x + wordWidth > canvasWidth) 
+        if ((x + wordWidth + ctx.measureText(wordSpaceMargin).width) > canvasWidth) 
         { 
           x = leftMargin;
           y += newLineMargin; 
@@ -114,13 +129,35 @@ export class MemeComponent {
   
   createMeme(num:number)
   {
+    if (this.boolCanBeSaved)
+      this.toggleSave();
+
     this.quoteapi.getDummyQuote().then((data: any) => 
     {
       this.quoteStr = data;
       //this.quoteArr = data;
     })
     this.catapi.getCats(num,"").subscribe((data: any) => 
-    {this.catPics = data;})
+    {
+      this.catPics = data;
+
+      this.imgTransformer.src = `${this.urlWorkaround}${this.catPics[0].url}`;
+      this.imgTransformer.width = this.catPics[0].width;
+      this.imgTransformer.height = this.catPics[0].height;
+      this.imgTransformer.crossOrigin = "anonymous";
+      this.imgTransformer.onload = (e) => {
+        this.toggleSave();
+        console.log("WE GOT THE IMAGE BACK AND READY TO SAVE!!");
+      }
+
+    })
+
+    
+
+
   }
+
+ 
+
 
 }
