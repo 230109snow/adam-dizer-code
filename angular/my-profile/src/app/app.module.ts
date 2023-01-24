@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FetchComponent } from './projects/fetch/fetch.component';
 import { QuoteComponent } from './projects/quote/quote.component';
 import { MemeComponent } from './projects/meme/meme.component';
+import { LinkListComponent } from './links/link-list/link-list.component';
+import { LinkViewComponent } from './links/link-view/link-view.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { MemeComponent } from './projects/meme/meme.component';
     CatsComponent,
     FetchComponent,
     QuoteComponent,
-    MemeComponent
+    MemeComponent,
+    LinkListComponent,
+    LinkViewComponent
   ],
   imports: [
     BrowserModule,

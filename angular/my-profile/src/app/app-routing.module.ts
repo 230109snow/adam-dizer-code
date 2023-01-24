@@ -8,6 +8,8 @@ import { CatsComponent } from './projects/cats/cats.component';
 import { FetchComponent } from './projects/fetch/fetch.component';
 import { QuoteComponent } from './projects/quote/quote.component';
 import { MemeComponent } from './projects/meme/meme.component';
+import { LinkListComponent } from './links/link-list/link-list.component';
+import { LinkViewComponent } from './links/link-view/link-view.component';
 
 const routes: Routes = [
   {
@@ -20,7 +22,17 @@ const routes: Routes = [
   },
   {
     path: 'links',
-    component: LinksComponent
+    component: LinksComponent,
+    children: [
+      {
+        path: 'link-list',
+      component: LinkListComponent
+      },
+      {
+        path: 'link-view',
+      component: LinkViewComponent
+      }
+    ]
   },
   {
     path: 'projects',
