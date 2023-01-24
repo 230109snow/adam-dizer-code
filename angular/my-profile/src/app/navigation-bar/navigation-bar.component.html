@@ -1,8 +1,8 @@
 
-<nav>
+<nav class="nav-bar">
     <div>
         <div>
-            <ul>
+            <ul class="nav-root" id="nav-root">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="home">Home</a>
                 </li>
@@ -14,6 +14,21 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="projects">My Projects</a>
+                    
+                    <ul class="nav-sub" id="nav-sub">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="fetch">Fetch</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="cats">Cats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="quote">Quote</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="meme">Meme</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>

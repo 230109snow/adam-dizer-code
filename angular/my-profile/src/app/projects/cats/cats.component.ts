@@ -83,8 +83,7 @@ export class CatsComponent implements OnInit, OnDestroy {
 
   updateSelectedBreed(e : any)
   {
-    let tVal = e.target.value;
-    this.strSelectedBreed = tVal;
+    this.strSelectedBreed = e.target.value;
     console.log(this.strSelectedBreed)
   }
       

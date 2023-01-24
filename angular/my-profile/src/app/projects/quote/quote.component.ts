@@ -6,7 +6,7 @@ import { QuoteApiService } from 'src/app/services/quote-api.service';
   templateUrl: './quote.component.html',
   styleUrls: ['./quote.component.css']
 })
-export class QuoteComponent {
+export class QuoteComponent implements OnInit {
 
   quoteStr : string = "";
 
