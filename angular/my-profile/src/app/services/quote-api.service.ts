@@ -1,7 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { quoteurl, quoteurl2, quoteurl3 } from 'src/quote-api-const';
+import { quoteurl, quoteurl2 } from 'src/const-quote-api';
+import { urlProxy } from 'src/const-api';
 import quotes from 'src/app/services/dummyQuotes.json';
 
 interface QuoteObj {
@@ -21,10 +22,14 @@ export class QuoteApiService {
 
 
   constructor(private http: HttpClient) 
-  {this.ngOnInit();}
+  {
+    this.ngOnInit();
+  }
 
   ngOnInit() : void
-  {this.initalizeQuotes();}
+  {
+    this.initalizeQuotes();
+  }
 
   getQuote() : Observable<any>
   {
@@ -33,7 +38,7 @@ export class QuoteApiService {
     // forkJoin([]).subscribe()
 
     console.log('here2.0')
-    return this.http.get(quoteurl3, {
+    return this.http.get(urlProxy  +quoteurl, {
       headers: {
         'content-type' : 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
@@ -59,6 +64,7 @@ export class QuoteApiService {
 
   initalizeQuotes() : void
   {
+    console.log("initalizing quotes")
     this.quoteList = quotes;
     this.hasLoadedQuotes = true;
   }

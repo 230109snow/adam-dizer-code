@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catVoteDTO } from 'src/app/models/catVoteDTO';
 import { Observable } from 'rxjs';
-import { catapiroot, catapikey  } from 'src/cat-api-const';
+import { catapiroot, catapikey  } from 'src/const-cat-api';
+
 
 interface CatObj {
   id : string;
