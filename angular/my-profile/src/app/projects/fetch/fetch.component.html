@@ -1,17 +1,18 @@
-<h4>Fetch HTTPS Status Code</h4>
 
-<table>
-    <tr><th>Status Codes</th></tr>
-    <tr><td>100s</td><td>Informational</td></tr>
-    <tr><td>200s</td><td>Success</td></tr>
-    <tr><td>300s</td><td>Redirection</td></tr>
-    <tr><td>400s</td><td>Client Side Error</td></tr>
-    <tr><td>500s</td><td>Server Side Error</td></tr>
-</table>
+    <h4>Fetch HTTPS Status Code</h4>
 
-<input type="number" [(ngModel)]="statusCode">
+    <table>
+        <tr><th>Status Codes</th></tr>
+        <tr><td>100s</td><td>Informational</td></tr>
+        <tr><td>200s</td><td>Success</td></tr>
+        <tr><td>300s</td><td>Redirection</td></tr>
+        <tr><td>400s</td><td>Client Side Error</td></tr>
+        <tr><td>500s</td><td>Server Side Error</td></tr>
+    </table>
 
-<button (click)="fetchStatusCode()">Fetch</button>
-<div>
-    <img [src]="imgSrc" width="50%">
-</div>
+    <input type="number" [(ngModel)]="statusCode">
+
+    <button (click)="fetchStatusCode()">Fetch</button>
+    <div>
+        <img [src]="imgSrc" width="50%">
+    </div>

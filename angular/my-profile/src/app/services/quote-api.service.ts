@@ -5,6 +5,15 @@ import { quoteurl, quoteurl2 } from 'src/const-quote-api';
 import { urlProxy } from 'src/const-api';
 import quotes from 'src/app/services/dummyQuotes.json';
 
+interface QuoteType
+{
+  
+}
+export enum QType{
+  Zen = 1,
+  Dummy = 2
+}
+
 interface QuoteObj {
   q:String; 
   a:String; 
