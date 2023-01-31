@@ -12,6 +12,8 @@ import { LinkListComponent } from './links/link-list/link-list.component';
 import { LinkViewComponent } from './links/link-view/link-view.component';
 
 const routes: Routes = [
+  { path: '', 
+    component: HomeComponent },
   {
     path: 'home',
     component: HomeComponent
@@ -24,14 +26,8 @@ const routes: Routes = [
     path: 'links',
     component: LinksComponent,
     children: [
-      {
-        path: 'link-list',
-      component: LinkListComponent
-      },
-      {
-        path: 'link-view',
-      component: LinkViewComponent
-      }
+      { path: 'link-list', component: LinkListComponent },
+      { path: 'link-view', component: LinkViewComponent }
     ]
   },
   {
