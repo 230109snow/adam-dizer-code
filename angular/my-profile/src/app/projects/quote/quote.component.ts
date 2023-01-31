@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuoteApiService } from 'src/app/services/quote-api.service';
+import { QType, QuoteRequest, QuoteApiService } from 'src/app/services/quote-api.service';
 
 @Component({
   selector: 'app-quote',
@@ -15,29 +15,21 @@ export class QuoteComponent implements OnInit {
 
   getQuote() : void
   {
-    console.log('here1.0')
-    this.quoteapi.getQuote().subscribe((data: any) => 
+
+    // this.quoteStr = this.quoteapi.getQuote(QType.Zen);
+    this.quoteapi.getQuote(QType.Zen).subscribe((data: any) => 
     {
-      console.log('here1.1')
       this.quoteStr = data;
     })
   }
 
-
-  getQuoteTest() { 
-    this.quoteapi.getApiTest().then((data: any) => {
-      this.quoteStr = data;
-    }).catch(error => {
-      console.error(error);
-    });
-  }
 
   getQuoteDummy()
   {
-    this.quoteapi.getDummyQuote().then((data: any) => 
-    {
-      this.quoteStr = data;
-    })
+    // this.quoteapi.getDummyQuote().then((data: any) => 
+    // {
+    //   this.quoteStr = data;
+    // })
   }
   
 }

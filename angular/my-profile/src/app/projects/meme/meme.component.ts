@@ -132,11 +132,11 @@ export class MemeComponent {
     if (this.boolCanBeSaved)
       this.toggleSave();
 
-    this.quoteapi.getDummyQuote().then((data: any) => 
-    {
-      this.quoteStr = data;
-      //this.quoteArr = data;
-    })
+    // this.quoteapi.getDummyQuote().then((data: any) => 
+    // {
+    //   this.quoteStr = data;
+    //   //this.quoteArr = data;
+    // })
     this.catapi.getCats(num,"").subscribe((data: any) => 
     {
       this.catPics = data;
