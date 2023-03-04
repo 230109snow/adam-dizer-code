@@ -59,69 +59,99 @@ export class QuoteApiService {
 
   getQuote(request : QType) : Observable<any>
   {
-      console.log("quote-api.service.getQuote()");
-      switch (request)
+
+      if(!this.hasLoadedRequest(request))
+        this.loadRequestType(request);
+
+        // wait....until load
+
+      let i : number = 0;
+      while(!this.hasLoadedRequest(request) && i < 100000)
+      {
+        console.log(i, !this.hasLoadedRequest(request))
+        i++;
+      }
+
+      return of(this.selectRandomQuote(request));     
+  }  
+
+
+  selectRandomQuote(request : QType) : string
+  {
+    console.log("quote-api.service.selectRandomQuote()");
+    let min : number = 0;
+    let max : number = 0; 
+    let randomNumber = 0;
+    
+    switch (request)
+    {
+      case QType.Dummy:
+        max = this.dummyQuoteList.length;
+        randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
+        return this.dummyQuoteList.slice(randomNumber, randomNumber+1)[0].q;
+      case QType.Zen:
+        max = this.zenQuoteList.length;
+        randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
+        console.log(min,max,randomNumber, this.zenQuoteList.slice(randomNumber, randomNumber+1)[0].q);
+        return this.zenQuoteList.slice(randomNumber, randomNumber+1)[0].q;
+      case QType.Norris:
+        max = this.norrisQuoteList.length;
+        randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
+        return this.norrisQuoteList.slice(randomNumber, randomNumber+1)[0].q;
+      default:
+        break;
+    }
+    return "unable to select random quote";
+  }
+
+  hasLoadedRequest(request : QType) : boolean
+  {
+    switch (request)
+    {
+      case QType.Dummy:
+        return this.hasLoadedDummyQuotes;
+      case QType.Zen:
+        return this.hasLoadedZenQuotes;
+      case QType.Norris:
+        return this.hasLoadedNorrisQuotes;
+      default:
+        return false;
+    }
+  }
+  
+  async loadRequestType(request : QType) : Promise<any>
+  {
+    switch (request)
       {
         case QType.Dummy:
           if (!this.hasLoadedDummyQuotes)
+          {
             this.loadDummyQuotes();
+            this.hasLoadedDummyQuotes = true;
+          }
           break;
 
         case QType.Zen:
           if (!this.hasLoadedZenQuotes)
             this.loadZenQuotes().subscribe((data:any) =>
             {
-              console.log(data);
               this.zenQuoteList = data;
               this.hasLoadedZenQuotes = true;
-              return this.selectRandomQuote(request);
             });
-          else
-            return of(this.selectRandomQuote(request));
           break;
 
         case QType.Norris:
           if (!this.hasLoadedNorrisQuotes)
-            this.loadNorrisQuotes();
+            this.loadNorrisQuotes().subscribe((data:any) =>
+            {
+              this.norrisQuoteList = data;
+              this.hasLoadedNorrisQuotes = true;
+            });
           break;
         default:
           break;
       }
-
-      
-
-      return of("getting quote...");
-      
-    }   
-
-
-    selectRandomQuote(request : QType) : string
-    {
-      console.log("quote-api.service.selectRandomQuote()");
-      let min : number = 0;
-      let max : number = 0; 
-      let randomNumber = 0;
-      
-      switch (request)
-      {
-        case QType.Dummy:
-          max = this.dummyQuoteList.length;
-          randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
-          return this.dummyQuoteList.slice(randomNumber, randomNumber+1)[0].q;
-        case QType.Zen:
-          max = this.zenQuoteList.length;
-          randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
-          console.log(min,max,randomNumber, this.zenQuoteList.slice(randomNumber, randomNumber+1)[0].q);
-          return this.zenQuoteList.slice(randomNumber, randomNumber+1)[0].q;
-        case QType.Norris:
-          max = this.norrisQuoteList.length;
-          randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; 
-          return this.norrisQuoteList.slice(randomNumber, randomNumber+1)[0].q;
-        default:
-          break;
-      }
-      return "unable to select random quote";
-    }
+  }
 
   loadDummyQuotes()
   {
@@ -141,9 +171,9 @@ export class QuoteApiService {
     });
   }
 
-  loadNorrisQuotes()
+  loadNorrisQuotes() : Observable<any>
   {
-    
+    return of("");
   }
 
 
